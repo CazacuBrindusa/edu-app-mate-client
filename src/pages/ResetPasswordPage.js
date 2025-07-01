@@ -10,7 +10,7 @@ function ResetPasswordPage() {
 
   const handleReset = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/reset-password', { token, newPassword });
+      const res = await axios.post('/reset-password', { token, newPassword });
       setMessage(res.data.message);
       setTimeout(() => navigate('/'), 2000);
     } catch (err) {
