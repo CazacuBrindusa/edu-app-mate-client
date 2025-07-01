@@ -33,7 +33,7 @@ function LoginPage() {
     try {
       const requestBody = { email: email.trim(), password: password.trim(), userType };
 
-      const response = await axios.post('http://localhost:5000/login', requestBody, {
+      const response = await axios.post('/login', requestBody, {
         headers: { 'Content-Type': 'application/json' },
       });
 
