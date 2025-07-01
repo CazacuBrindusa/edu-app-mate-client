@@ -38,14 +38,14 @@ export default function HomeworkTab({
             <li key={i}>
               <div>
                 <strong>Professor File:</strong>{' '}
-                <a href={`http://localhost:5000/uploads/${hw.professorFile}`} target="_blank" rel="noopener noreferrer">
+                <a href={`/uploads/${hw.professorFile}`} target="_blank" rel="noopener noreferrer">
                   {hw.professorFile}
                 </a>
               </div>
               {hw.studentFile ? (
                 <div>
                   <strong>Student Submission:</strong>{' '}
-                  <a href={`/uploads/${hw.studentFile}`} target="_blank" rel="noopener noreferrer">
+                  <a href={hw.studentFile} target="_blank" rel="noopener noreferrer">
                     {hw.studentFile}
                   </a>
                 </div>
