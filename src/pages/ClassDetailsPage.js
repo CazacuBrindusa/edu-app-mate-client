@@ -13,8 +13,6 @@ import StudentGradesTab from '../pages/profTabs/StudentGradesTab';
 import AddGradeForm from '../pages/profTabs/AddGradeForm';
 import HomeworkTab from '../pages/profTabs/HomeworkTab';
 
-axios.defaults.baseURL = 'http://localhost:5000';
-
 export default function ClassDetailsPage() {
   const { classId } = useParams();
   const navigate = useNavigate();
