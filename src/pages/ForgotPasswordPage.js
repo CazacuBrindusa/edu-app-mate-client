@@ -9,7 +9,7 @@ function ForgotPasswordPage() {
   
   const handleSubmit = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/forgot-password', { email });
+      const res = await axios.post('/forgot-password', { email });
       setMessage(res.data.message);
     } catch (err) {
       setMessage(err.response?.data?.error || 'Something went wrong');
