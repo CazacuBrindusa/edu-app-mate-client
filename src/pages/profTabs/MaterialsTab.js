@@ -16,7 +16,7 @@ export default function MaterialsTab({
           {materials.map((mat, i) => (
             <li key={i}>
               <a
-                href={`http://localhost:5000/uploads/${mat}`}
+                href={`/uploads/${mat}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
