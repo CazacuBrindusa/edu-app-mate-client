@@ -41,7 +41,7 @@ function StudentDashboard() {
 
       try {
         const res = await axios.get(
-          'http://localhost:5000/api/student/dashboard',
+          '/api/student/dashboard',
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -89,7 +89,7 @@ function StudentDashboard() {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/student/homework/${homeworkId}/upload`,
+        `/api/student/homework/${homeworkId}/upload`,
         formData,
         {
           headers: {
@@ -102,7 +102,7 @@ function StudentDashboard() {
       alert('Homework uploaded!');
       // reload
       const res = await axios.get(
-        'http://localhost:5000/api/student/dashboard',
+        '/api/student/dashboard',
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setData(d => ({
@@ -128,7 +128,7 @@ function StudentDashboard() {
         return;
       }
 
-      const res = await fetch(`http://localhost:5000/uploads/${file}`);
+      const res = await fetch(file);
       if (!res.ok) throw new Error('Failed to load file');
       const rawTex = await res.text();
 
@@ -194,7 +194,7 @@ function StudentDashboard() {
                   {data.materials.map((mat, i) => (
                     <li key={i}>
                       <a
-                        href={`http://localhost:5000/uploads/${mat}`}
+                        href={mat}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -253,7 +253,7 @@ function StudentDashboard() {
 
                   {isPdf ? (
                     <iframe
-                      src={`http://localhost:5000/uploads/${viewingTest}`}
+                      src={viewingTest}
                       width="100%"
                       height="600px"
                       title="PDF Viewer"
@@ -330,7 +330,7 @@ function StudentDashboard() {
                       <div>
                         <strong>Assigned:</strong>{' '}
                         <a
-                          href={`http://localhost:5000/uploads/${hw.professorFile}`}
+                          href={hw.professorFile}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -342,7 +342,7 @@ function StudentDashboard() {
                         <div style={{ marginTop: 10 }}>
                           <strong>Your Submission:</strong>{' '}
                           <a
-                            href={`http://localhost:5000/uploads/${hw.studentFile}`}
+                            href={hw.studentFile}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
