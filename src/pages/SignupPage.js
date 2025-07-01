@@ -62,7 +62,7 @@ function SignupPage() {
         };
     
         try {
-            await axios.post('http://localhost:5000/register', requestBody, {
+            await axios.post('/register', requestBody, {
                 headers: { 'Content-Type': 'application/json' },
             });
     
