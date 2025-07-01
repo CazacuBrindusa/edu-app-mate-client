@@ -11,7 +11,7 @@ function ProfessorDashboard() {
     const token = localStorage.getItem('token');
     if (!token) return;
   
-    axios.get('http://localhost:5000/api/professor/classes', {
+    axios.get('/api/professor/classes', {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(response => setClasses(response.data))
