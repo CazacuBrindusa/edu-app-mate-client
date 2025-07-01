@@ -1,0 +1,57 @@
+/* Set the background image for the entire dashboard */
+.professor-dashboard {
+    background-image: url('https://wallpaperaccess.com/full/2964938.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Style the container of the dashboard */
+  .dashboard-container {
+    background-color: rgba(255, 255, 255, 0.8); /* White background with opacity */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  /* Style the heading */
+  .dashboard-container h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the list of classes */
+  .dashboard-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dashboard-container li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Hover effect for each class item */
+  .dashboard-container li:hover {
+    background-color: #dad8d8;
+  }
+  
+  /* Optional: Add a pointer cursor for better UX */
+  .dashboard-container li:active {
+    transform: scale(0.98); /* Slightly shrink on click */
+  }
+  
