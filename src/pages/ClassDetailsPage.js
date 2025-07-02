@@ -145,7 +145,7 @@ export default function ClassDetailsPage() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // 🔁 Refetch full class data
+      //  Refetch full class data
       const res = await axios.get(`/api/professor/class/${classId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -184,7 +184,7 @@ export default function ClassDetailsPage() {
     // Replace the exercise being edited
     updatedGrade.exercises[exIdx] = editedExercise;
 
-    // ✅ Validation
+    //  Validation
     const hasInvalid = updatedGrade.exercises.some(ex =>
       ex.obtainedPoints === '' ||
       ex.maxPoints === '' ||
@@ -405,6 +405,40 @@ export default function ClassDetailsPage() {
     }
   };
 
+  const handleDeleteHomework = async (index) => {
+    if (!selectedHomeworkStudent) return;
+
+    const token = localStorage.getItem('token');
+    const studentId = selectedHomeworkStudent._id;
+    const homeworkId = selectedHomeworkStudent.homework[index]?._id;
+
+    if (!homeworkId) {
+      alert('Invalid homework ID');
+      return;
+    }
+
+    try {
+      await axios.delete(
+        `/api/student/${studentId}/homework/${homeworkId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+
+      // Update local state
+      const updatedHomework = [...selectedHomeworkStudent.homework];
+      updatedHomework.splice(index, 1);
+
+      setSelectedHomeworkStudent(prev => ({
+        ...prev,
+        homework: updatedHomework
+      }));
+    } catch (err) {
+      console.error('Failed to delete homework:', err);
+      alert('Error deleting homework');
+    }
+  };
+
   // — Sidebar & navigation —
   const handleClassClick = id => navigate(`/professor/class/${id}`);
   const handleLogout = () => {
@@ -572,6 +606,7 @@ export default function ClassDetailsPage() {
               onSelectStudent={handleHomeworkStudentClick}
               onFileChange={setHomeworkFile}
               onUpload={handleUploadHomework}
+              onDeleteHomework={handleDeleteHomework}
               onBack={() => {
                 setSelectedHomeworkStudent(null);
                 setHomeworkFile(null);
