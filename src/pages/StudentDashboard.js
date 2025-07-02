@@ -128,7 +128,7 @@ function StudentDashboard() {
         return;
       }
 
-      const res = await fetch(file);
+      const res = await fetch(`/uploads/${file}`);
       if (!res.ok) throw new Error('Failed to load file');
       const rawTex = await res.text();
 
@@ -194,7 +194,7 @@ function StudentDashboard() {
                   {data.materials.map((mat, i) => (
                     <li key={i}>
                       <a
-                        href={mat}
+                        href={`/uploads/${mat}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -253,7 +253,7 @@ function StudentDashboard() {
 
                   {isPdf ? (
                     <iframe
-                      src={viewingTest}
+                      src={`/uploads/${viewingTest}`}
                       width="100%"
                       height="600px"
                       title="PDF Viewer"
@@ -330,7 +330,7 @@ function StudentDashboard() {
                       <div>
                         <strong>Assigned:</strong>{' '}
                         <a
-                          href={hw.professorFile}
+                          href={`/uploads/${hw.professorFile}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -342,7 +342,7 @@ function StudentDashboard() {
                         <div style={{ marginTop: 10 }}>
                           <strong>Your Submission:</strong>{' '}
                           <a
-                            href={hw.studentFile}
+                            href={`/uploads/${hw.studentFile}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
