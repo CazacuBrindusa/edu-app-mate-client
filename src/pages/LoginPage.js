@@ -10,16 +10,14 @@ function LoginPage() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Login Function
   const handleLogin = async () => {
-    setError(null); // Reset errors
+    setError(null);
 
     if (!email.trim() || !password.trim()) {
       setError('Please enter both email and password');
       return;
     }
 
-    // Determine user type based on email domain
     let userType;
     if (email.endsWith('@prof.com')) {
       userType = 'professor';
@@ -41,13 +39,10 @@ function LoginPage() {
 
       if (!token) throw new Error('No token received');
 
-      // Store token
       localStorage.setItem('token', token);
 
-      // Decode JWT token
       const decodedToken = jwtDecode(token);
 
-      // Redirect based on role
       if (decodedToken.userType === 'professor') {
         navigate('/professor');
       } else {
@@ -90,10 +85,13 @@ function LoginPage() {
         <button type="button" onClick={() => navigate('/signup')}>
           Sign Up
         </button>
-        <button type="button" className="forgot-password-link" onClick={() => navigate('/forgot-password')}>
+        <button
+          type="button"
+          className="forgot-password-link"
+          onClick={() => navigate('/forgot-password')}
+        >
           Forgot Password?
         </button>
-
       </form>
     </div>
   );
