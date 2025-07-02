@@ -25,7 +25,7 @@ function TestsTab({
           {tests.map(test => (
             <li key={test.file}>
               <a
-                href={`/uploads/${test.file}`}
+                href={test.file}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
