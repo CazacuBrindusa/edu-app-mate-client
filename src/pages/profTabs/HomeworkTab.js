@@ -34,18 +34,26 @@ export default function HomeworkTab({
       <h4>Student: {selectedStudent.name}</h4>
       {homework.length > 0 ? (
         <ul>
-          {homework.map((hw,i) => (
+          {homework.map((hw, i) => (
             <li key={i}>
               <div>
                 <strong>Professor File:</strong>{' '}
-                <a href={`/uploads/${hw.professorFile}`} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={hw.professorFile}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {hw.professorFile}
                 </a>
               </div>
               {hw.studentFile ? (
                 <div>
                   <strong>Student Submission:</strong>{' '}
-                  <a href={`https://res.cloudinary.com/dbqrendhj/raw/upload/${hw.studentFile}`} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={hw.studentFile}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {hw.studentFile}
                   </a>
                 </div>
@@ -64,7 +72,11 @@ export default function HomeworkTab({
 
       <div style={{ marginTop: 20 }}>
         <h4>Assign New Homework</h4>
-        <input type="file" accept="application/pdf" onChange={e => onFileChange(e.target.files[0])} />
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={e => onFileChange(e.target.files[0])}
+        />
         <button onClick={onUpload}>Upload</button>
       </div>
 
