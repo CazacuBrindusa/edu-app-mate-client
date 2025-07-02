@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BASE_URL = process.env.REACT_APP_API_URL || '';
+const API_BASE = process.env.REACT_APP_API_BASE_URL || '';
 
 export default function HomeworkTab({
   students = [],
@@ -21,7 +21,6 @@ export default function HomeworkTab({
             <li
               key={s._id}
               onClick={() => onSelectStudent(s._id)}
-              className="student"
               style={{
                 cursor: 'pointer',
                 color: '#007bff',
@@ -29,8 +28,11 @@ export default function HomeworkTab({
                 padding: '8px 12px',
                 border: '1px solid #ccc',
                 borderRadius: '6px',
-                backgroundColor: '#f9f9f9'
+                backgroundColor: '#f8f9fa',
+                transition: 'background 0.2s'
               }}
+              onMouseEnter={e => e.currentTarget.style.backgroundColor = '#e9ecef'}
+              onMouseLeave={e => e.currentTarget.style.backgroundColor = '#f8f9fa'}
             >
               📁 {s.name}
             </li>
@@ -48,23 +50,23 @@ export default function HomeworkTab({
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {homework.map((hw, i) => (
             <li
-              key={hw._id || i}
+              key={i}
               style={{
                 marginBottom: 20,
                 padding: '16px',
-                border: '1px solid #ccc',
+                border: '1px solid #dee2e6',
                 borderRadius: '8px',
-                backgroundColor: '#fdfdfd',
-                boxShadow: '0 1px 4px rgba(0,0,0,0.05)'
+                backgroundColor: '#ffffff',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
               }}
             >
               <div style={{ marginBottom: 8 }}>
                 <strong>Professor File:</strong>{' '}
                 <a
-                  href={`${BASE_URL}/uploads/${hw.professorFile}`}
+                  href={`${API_BASE}/uploads/${hw.professorFile}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: '#0066cc', textDecoration: 'underline' }}
+                  style={{ color: '#007bff', textDecoration: 'underline' }}
                 >
                   {hw.professorFile}
                 </a>
@@ -74,30 +76,30 @@ export default function HomeworkTab({
                 <div style={{ marginBottom: 8 }}>
                   <strong>Student Submission:</strong>{' '}
                   <a
-                    href={`${BASE_URL}/uploads/${hw.studentFile}`}
+                    href={`${API_BASE}/uploads/${hw.studentFile}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ color: '#28a745' }}
+                    style={{ color: '#28a745', textDecoration: 'underline' }}
                   >
                     {hw.studentFile}
                   </a>
                 </div>
               ) : (
-                <div style={{ fontStyle: 'italic', color: '#777', marginBottom: 8 }}>
+                <div style={{ fontStyle: 'italic', color: '#6c757d', marginBottom: 8 }}>
                   No student submission yet.
                 </div>
               )}
 
-              <div style={{ fontSize: 12, color: '#aaa' }}>
-                {new Date(hw.postedAt).toLocaleString()}
+              <div style={{ fontSize: 12, color: '#adb5bd' }}>
+                Assigned: {new Date(hw.postedAt).toLocaleString()}
               </div>
 
               <button
                 onClick={() => onDeleteHomework(i)}
                 style={{
                   marginTop: 10,
-                  color: 'white',
                   backgroundColor: '#dc3545',
+                  color: '#fff',
                   border: 'none',
                   padding: '6px 12px',
                   borderRadius: '5px',
@@ -110,7 +112,7 @@ export default function HomeworkTab({
           ))}
         </ul>
       ) : (
-        <p style={{ fontStyle: 'italic', color: '#777' }}>No homework assigned yet.</p>
+        <p style={{ fontStyle: 'italic', color: '#6c757d' }}>No homework assigned yet.</p>
       )}
 
       <div style={{ marginTop: 30 }}>
@@ -119,7 +121,13 @@ export default function HomeworkTab({
           type="file"
           accept="application/pdf"
           onChange={e => onFileChange(e.target.files[0])}
-          style={{ margin: '10px 0' }}
+          style={{
+            marginBottom: 10,
+            padding: '8px',
+            borderRadius: '4px',
+            border: '1px solid #ccc',
+            fontSize: '14px'
+          }}
         />
         <br />
         <button
@@ -130,10 +138,11 @@ export default function HomeworkTab({
             padding: '10px 20px',
             border: 'none',
             borderRadius: '8px',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            fontWeight: 'bold'
           }}
         >
-          Upload
+          📤 Upload
         </button>
       </div>
 
@@ -147,7 +156,8 @@ export default function HomeworkTab({
           padding: '10px 20px',
           border: 'none',
           borderRadius: '8px',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          fontWeight: 'bold'
         }}
       >
         🔙 Back to student list
