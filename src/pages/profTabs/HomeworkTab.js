@@ -45,7 +45,7 @@ export default function HomeworkTab({
               {hw.studentFile ? (
                 <div>
                   <strong>Student Submission:</strong>{' '}
-                  <a href={hw.studentFile} target="_blank" rel="noopener noreferrer">
+                  <a href={`https://res.cloudinary.com/dbqrendhj/raw/upload/${hw.studentFile}`} target="_blank" rel="noopener noreferrer">
                     {hw.studentFile}
                   </a>
                 </div>
