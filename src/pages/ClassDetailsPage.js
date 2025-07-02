@@ -245,6 +245,10 @@ export default function ClassDetailsPage() {
     }
   };
 
+const handleCancelAddGrade = () => {
+    setShowAddGradeForm(false);
+  };
+  
   // — Announcements —
   const handleAnnouncementPost = () => {
     if (!announcementText.trim()) return;
@@ -286,6 +290,11 @@ export default function ClassDetailsPage() {
     }
   };
 
+const handleEditClick = (idx) => {
+    setEditingAnnouncementIndex(idx);
+    setAnnouncementText(data.announcements[idx]?.message || '');
+  };
+  
   // — Files (materials/tests) —
 
   const handleFileChange = (evt, type) => {
@@ -573,27 +582,33 @@ export default function ClassDetailsPage() {
                   tests={tests}
                   onSubmit={handleNewGradeSubmit}
                   existingGrades={grades}
+                  onCancel={handleCancelAddGrade}
                 />
               ) : (
-                <StudentGradesTab
-                  student={selectedStudent}
-                  grades={grades}
-                  expandedIndex={expandedGradeIndex}
-                  editIndex={editExerciseIndex}
-                  editedExercise={editedExercise}
-                  onToggleExpand={index => {
-                    setExpandedGradeIndex(prev => (prev === index ? null : index));
-                  }}
-                  onStartEdit={handleEditExercise}
-                  onChangeEdit={handleChangeEdit}
-                  onSaveEdit={handleSaveExercise}
-                  handleDeleteGrade={handleDeleteGrade}
-                />
+                <>
+                  <StudentGradesTab
+                    student={selectedStudent}
+                    grades={grades}
+                    expandedIndex={expandedGradeIndex}
+                    editIndex={editExerciseIndex}
+                    editedExercise={editedExercise}
+                    onToggleExpand={index => {
+                      setExpandedGradeIndex(prev => (prev === index ? null : index));
+                    }}
+                    onStartEdit={handleEditExercise}
+                    onChangeEdit={handleChangeEdit}
+                    onSaveEdit={handleSaveExercise}
+                    handleDeleteGrade={handleDeleteGrade}
+                  />
+                  <button
+                    onClick={() => setShowAddGradeForm(true)}
+                    style={{ marginTop: 10 }}
+                  >
+                    ➕ Add Grade
+                  </button>
+                </>
               )}
-              <button onClick={() => setShowAddGradeForm(f => !f)}>
-                {showAddGradeForm ? 'Cancel' : 'Add New Grade'}
-              </button>
-              <button onClick={() => setSelectedStudent(null)}>Back</button>
+              <button onClick={() => setSelectedStudent(null)}>🔙 Back</button>
             </>
           )}
 
