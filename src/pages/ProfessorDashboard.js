@@ -10,14 +10,15 @@ function ProfessorDashboard() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) return;
-  
-    axios.get('/api/professor/classes', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then(response => setClasses(response.data))
-    .catch(error => console.log(error));
+
+    axios
+      .get('/api/professor/classes', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(response => setClasses(response.data))
+      .catch(error => console.log(error));
   }, []);
-  
+
   const handleClassClick = (classId) => {
     navigate(`/professor/class/${classId}`);
   };
