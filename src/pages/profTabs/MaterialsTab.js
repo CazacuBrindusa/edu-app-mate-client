@@ -16,16 +16,16 @@ export default function MaterialsTab({
           {materials.map((mat, i) => (
             <li key={i}>
               <a
-                href={`/uploads/${mat}`}
+                href={`${process.env.REACT_APP_API_BASE}/uploads/${mat}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {mat}
               </a>
               <button
-               className="delete-button"
-               onClick={() => onDeleteFile(mat, 'material')}
-             >
+                className="delete-button"
+                onClick={() => onDeleteFile(mat, 'material')}
+              >
                 🗑️
               </button>
             </li>
